@@ -9,62 +9,86 @@
 
     <link rel="stylesheet" href="style.css">
 
+    <!-- Manifesto do PWA -->
     <link rel="manifest" href="manifest.json">
+
+    <!-- Cor do aplicativo -->
+    <meta name="theme-color" content="#000000">
+
+    <!-- Ícone do navegador -->
+    <link rel="icon" type="image/png" href="icon-192.png">
 </head>
 
 <body>
 
     <header>
-       
+
         <h1>Salão e Barbearia</h1>
-             <nav>
+
+        <nav>
             <a href="#inicio">Início</a>
             <a href="#servicos">Serviços</a>
             <a href="#sobre">Sobre</a>
             <a href="#contato">Contato</a>
         </nav>
-        <img src="/icon-512 (1).png" style="height: 512px; width: 512px;">
 
+        <img 
+            src="icon-512.png" 
+            alt="Logo Barber House"
+            style="height: 300px; width: 300px;"
+        >
 
-        
     </header>
 
     <main>
 
         <section id="inicio">
+
             <h2>Seu estilo começa aqui</h2>
-            <p>Cuidados, estilo e qualidade em um só lugar.</p>
-        </br>
+
+            <p>
+                Cuidados, estilo e qualidade em um só lugar.
+            </p>
+
+            <br>
+
             <button>Agendar horário</button>
+
         </section>
 
+
         <section id="servicos">
+
             <h2>Nossos serviços:</h2>
 
             <div>
                 <h3>Corte</h3>
                 <p>R$ 35,00</p>
             </div>
-            </br>
-            </br>
+
+            <br>
+
             <div>
                 <h3>Barba</h3>
                 <p>R$ 25,00</p>
             </div>
-            </br>
-            </br>
+
+            <br>
+
             <div>
                 <h3>Corte + Barba</h3>
                 <p>R$ 50,00</p>
             </div>
-            </br>
-            </br>
+
+            <br>
+
             <div>
                 <h3>Lavagem</h3>
                 <p>R$ 20,00</p>
             </div>
-            </br>
-            </br>
+
+            <br>
+
             <div>
                 <h3>Penteado</h3>
                 <p>R$ 30,00</p>
@@ -72,31 +96,66 @@
 
         </section>
 
+
         <section id="sobre">
+
             <h2>Sobre nós</h2>
 
             <p>
-                Somos uma barbearia especializada em cortes modernos e cuidados masculinos, incluindo cortes, barba, lavagens e finalização.
+                Somos uma barbearia especializada em cortes modernos
+                e cuidados masculinos, incluindo cortes, barba,
+                lavagens e finalização.
             </p>
+
         </section>
 
+
         <section id="contato">
+
             <div style="text-align: center;">
-                 <img src="icon-192.png" style="height: 192px; width: 192px;">
+
+                <img 
+                    src="icon-192.png" 
+                    alt="Logo Barber House"
+                    style="height: 192px; width: 192px;"
+                >
+
             </div>
+
             <h2>Contato</h2>
 
             <p>Telefone: (11) 99999-9999</p>
+
             <p>São Paulo - SP</p>
+
         </section>
-        
+
     </main>
 
+
     <footer>
+
         <p>© 2026 Barber House</p>
+
     </footer>
 
+
     <script src="script.js"></script>
+
+    <script>
+        // Registro do Service Worker
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", function () {
+                navigator.serviceWorker.register("sw.js")
+                    .then(function (registration) {
+                        console.log("Service Worker registrado com sucesso!");
+                    })
+                    .catch(function (error) {
+                        console.log("Erro ao registrar o Service Worker:", error);
+                    });
+            });
+        }
+    </script>
 
 </body>
 
