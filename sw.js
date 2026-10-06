@@ -1,19 +1,37 @@
-const CACHE_NAME = 'salao-barbearia';
-const ARQUIVOS_CACHE = [
-    '/',
-    '/index.html',
-    '/style.css',
-    '/script.js',
-    '/manifest.json',
-    '/icon-192.png',
-    '/icon-512.png'
-];  
-self.addEventListener('install', event => {
-    event.waitUntill (
-        caches.open (CACHE_NAME)
-            .then(cache=> {
-                console.log ('Arquivos em cache');
-                return cache.addAll(ARQUIVOS_CACHE);
-            });
-    )
+const CACHE_NAME = "barber-house-v1";
+
+const FILES_TO_CACHE = [
+    "./",
+    "./index.html",
+    "./style.css",
+    "./script.js",
+    "./manifest.json",
+    "./icon-192.png",
+    "./icon-512.png"
+];
+
+self.addEventListener("install", event => {
+    event.waitUntil(
+        caches.open(CACHE_NAME)
+            .then(cache => cache.addAll(FILES_TO_CACHE))
+    );
+});
+
+self.addEventListener("activate", event => {
+    event.waitUntil(
+        caches.keys().then(keys =>
+            Promise.all(
+                keys
+                    .filter(key => key !== CACHE_NAME)
+                    .map(key => caches.delete(key))
+            )
+        )
+    );
+});
+
+self.addEventListener("fetch", event => {
+    event.respondWith(
+        caches.match(event.request)
+            .then(response => response || fetch(event.request))
+    );
 });
